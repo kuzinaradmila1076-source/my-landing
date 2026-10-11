@@ -722,3 +722,27 @@
 .section--light + .section--dark { --blend-from: var(--c-light); }
 .section--light + .section--black { --blend-from: var(--c-light); }
 .section--black + .section--dark { --blend-from: var(--c-black); }
+
+/* ---------- Уведомление о cookies (показывается только при включённой Метрике) ---------- */
+.cookie-notice {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 60;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  max-width: 640px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  background: var(--c-bg);
+  color: var(--c-text);
+  border: 1px solid rgba(234, 246, 238, 0.25);
+  font-size: 0.85rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+.cookie-notice p {
+  flex: 1 1 260px;
+}
