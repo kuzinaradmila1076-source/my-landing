@@ -5,7 +5,7 @@ const RUSH = {
   label: 'Сроки',
   options: [
     { id: 'normal', label: 'Обычные сроки', surcharge: 0 },
-    { id: 'urgent', label: 'Срочно (до 5 дней)', surcharge: 0, multiplier: 1.3 },
+    { id: 'urgent', label: 'Срочно (в приоритете)', surcharge: 0, multiplier: 1.3 },
   ],
 };
 

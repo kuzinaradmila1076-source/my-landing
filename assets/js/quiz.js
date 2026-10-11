@@ -1,4 +1,5 @@
 import { telegramLink } from './links.js';
+import { isRepeatClick } from './clicks.js';
 
 export const SALON_STEPS = [
   {
@@ -92,6 +93,7 @@ export function initQuiz(root) {
   root.addEventListener('click', (e) => {
     const option = e.target.closest('[data-option]');
     if (option) {
+      if (isRepeatClick(e)) return;
       if (!started) {
         started = true;
         emitGoal('quiz');

@@ -112,3 +112,10 @@ test('buildRequestText names the service, range and chosen options within 500 ch
 test('buildRequestText for an unknown service returns an empty string', () => {
   assert.equal(buildRequestText('unknown', {}), '');
 });
+
+test('the urgent option does not promise a term the quote contradicts', () => {
+  for (const s of Object.values(SERVICES)) {
+    const urgent = s.questions.find((q) => q.id === 'rush').options.find((o) => o.id === 'urgent');
+    assert.ok(!/\d\s*дн/.test(urgent.label), `${s.id}: "${urgent.label}" must not promise a number of days`);
+  }
+});

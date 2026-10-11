@@ -748,3 +748,10 @@
 .cookie-notice p {
   flex: 1 1 260px;
 }
+
+.works__cta {
+  margin-top: 40px;
+}
+.stub {
+  color: var(--c-ink-muted);
+}

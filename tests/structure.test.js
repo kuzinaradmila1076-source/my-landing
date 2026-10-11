@@ -129,3 +129,23 @@ test('no invented testimonials or client logos', () => {
   assert.ok(!html.includes('<blockquote'));
   assert.ok(!/Отзывы клиентов|Нам доверяют|Наши клиенты/.test(html));
 });
+
+test('the works section repeats the main call to action after the demos', () => {
+  const works = section('works');
+  assert.ok(works.lastIndexOf('Обсудить проект') > works.indexOf('demo-grid'));
+  assert.ok(/<a[^>]+href="https:\/\/t\.me\/radmila_direct"[^>]*>Обсудить проект<\/a>/.test(works));
+});
+
+test('the footer lists Telegram, e-mail and the call link', () => {
+  const f = html.match(/<footer[\s\S]*?<\/footer>/)[0];
+  assert.ok(f.includes('href="https://t.me/radmila_direct"'));
+  assert.ok(f.includes('href="mailto:radmila-web@yandex.ru"'));
+  assert.ok(f.includes('href="tel:+79308501004"'));
+  assert.ok(!f.replace(/<[^>]+>/g, ' ').includes('850 1004'));
+});
+
+test('the menu script file exists and main.js loads modules through the safe boot helper', () => {
+  const main = readFileSync(new URL('../assets/js/main.js', import.meta.url), 'utf8');
+  assert.ok(main.includes("from './boot.js'"));
+  assert.ok(!/^import \{ init(Calculator|Quiz|Bot) \}/m.test(main), 'interactive modules must be loaded dynamically');
+});

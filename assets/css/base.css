@@ -144,3 +144,10 @@ a {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Кольцо фокуса: мятный виден только на тёмном, на светлом фоне и белых карточках берём тёмно-зелёный */
+.section--light :focus-visible,
+.demo-card :focus-visible,
+.terms :focus-visible {
+  outline-color: var(--c-green-2);
+}

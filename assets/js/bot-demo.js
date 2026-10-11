@@ -1,3 +1,5 @@
+import { isRepeatClick } from './clicks.js';
+
 export const BOOKING_SCRIPT = {
   start: 'greet',
   nodes: {
@@ -54,35 +56,62 @@ export function initBot(root) {
   if (!root) return;
   const bot = createBot(BOOKING_SCRIPT);
   let started = false;
+  let shown = 0;
 
-  function render() {
-    root.innerHTML = `
-      <p class="label">Демо-бот · демо-сценарий</p>
-      <div class="bot__log" role="log" aria-live="polite">${bot
-        .messages()
-        .map((m) => `<p class="bot__msg bot__msg--${m.from}">${m.text}</p>`)
-        .join('')}</div>
-      <div class="bot__replies">${bot
-        .replies()
-        .map((r) => `<button type="button" class="bot__reply" data-reply="${r.label}">${r.label}</button>`)
-        .join('')}</div>
-      ${bot.finished() ? '<button type="button" class="quiz__back" data-restart>Сначала</button>' : ''}`;
+  // Каркас строится один раз: журнал (role="log") не пересоздаётся, поэтому новые сообщения озвучиваются.
+  root.innerHTML = `
+    <p class="label">Демо-бот · демо-сценарий</p>
+    <div class="bot__log" role="log" aria-live="polite"></div>
+    <div class="bot__replies"></div>
+    <div class="bot__foot"></div>`;
+  const log = root.querySelector('.bot__log');
+  const replies = root.querySelector('.bot__replies');
+  const foot = root.querySelector('.bot__foot');
+
+  function syncLog() {
+    const messages = bot.messages();
+    if (messages.length < shown) {
+      log.textContent = '';
+      shown = 0;
+    }
+    for (const m of messages.slice(shown)) {
+      const p = document.createElement('p');
+      p.className = `bot__msg bot__msg--${m.from}`;
+      p.textContent = m.text;
+      log.appendChild(p);
+    }
+    shown = messages.length;
+  }
+
+  function syncReplies(moveFocus) {
+    replies.innerHTML = bot
+      .replies()
+      .map((r) => `<button type="button" class="bot__reply" data-reply="${r.label}">${r.label}</button>`)
+      .join('');
+    foot.innerHTML = bot.finished() ? '<button type="button" class="quiz__back" data-restart>Сначала</button>' : '';
+    if (moveFocus) (replies.querySelector('button') ?? foot.querySelector('button'))?.focus({ preventScroll: true });
+  }
+
+  function render(moveFocus) {
+    syncLog();
+    syncReplies(moveFocus);
   }
 
   root.addEventListener('click', (e) => {
     const reply = e.target.closest('[data-reply]');
     if (reply) {
+      if (isRepeatClick(e)) return;
       if (!started) {
         started = true;
         emitGoal('bot');
       }
       bot.choose(reply.dataset.reply);
-      render();
+      render(true);
     } else if (e.target.closest('[data-restart]')) {
       bot.restart();
-      render();
+      render(true);
     }
   });
 
-  render();
+  render(false);
 }
