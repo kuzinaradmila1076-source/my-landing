@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/manrope-cyrillic-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116, U+20BD;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/manrope-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-cyrillic-400-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --c-bg: #031c12;
+  --c-green-1: #05301f;
+  --c-green-2: #0b4a2e;
+  --c-accent: #3df08a;
+  --c-accent-ink: #032115;
+  --c-text: #eaf6ee;
+  --c-text-muted: #b8d3c2;
+  --c-light: #f2fbf6;
+  --c-light-2: #e9fbf1;
+  --c-ink: #0a1c14;
+  --c-ink-muted: #3d5648;
+  --c-black: #000000;
+
+  --font-sans: 'Manrope', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, 'Courier New', monospace;
+
+  --radius: 16px;
+  --radius-pill: 999px;
+  --gutter: 20px;
+  --max: 1160px;
+  --header-h: 64px;
+}

@@ -1,0 +1,174 @@
+/* ---------- Шапка ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: rgba(3, 28, 18, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(234, 246, 238, 0.08);
+}
+.site-header .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand {
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav-links {
+  display: none;
+  gap: 24px;
+  font-size: 0.9rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--c-text-muted);
+}
+.nav-links a:hover {
+  color: var(--c-accent);
+}
+.menu {
+  position: relative;
+}
+.menu summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: 40px;
+  min-width: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0 12px;
+  border: 1.5px solid rgba(234, 246, 238, 0.3);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+}
+.menu summary::-webkit-details-marker {
+  display: none;
+}
+.menu nav {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 200px;
+  display: grid;
+  background: var(--c-bg);
+  border: 1px solid rgba(234, 246, 238, 0.15);
+  border-radius: 12px;
+  padding: 8px;
+}
+.menu nav a {
+  padding: 12px;
+  text-decoration: none;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (min-width: 900px) {
+  .nav-links {
+    display: flex;
+  }
+  .menu {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .menu__label {
+    display: none;
+  }
+  .menu summary::before {
+    content: "☰";
+    font-size: 1.1rem;
+  }
+  .header-actions .btn--small {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    min-height: 36px;
+    white-space: nowrap;
+  }
+  .header-actions {
+    gap: 6px;
+  }
+  .site-header .container {
+    gap: 8px;
+  }
+  .brand {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- 01. Первый экран ---------- */
+.hero {
+  padding-top: clamp(48px, 8vw, 96px);
+}
+.hero__grid {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+.hero .label {
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-size: clamp(2.1rem, 5.2vw, 3.8rem);
+  max-width: 19ch;
+  margin-bottom: 22px;
+}
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--c-text-muted);
+  max-width: 34rem;
+  margin-bottom: 28px;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-bottom: 14px;
+}
+.hero__link {
+  color: var(--c-text);
+  text-underline-offset: 4px;
+}
+.hero__note {
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+}
+.hero__proof {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(234, 246, 238, 0.15);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--c-accent);
+  max-width: 34rem;
+}
+.demo-card {
+  min-height: 300px;
+  padding: 18px;
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--c-ink);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+.demo-card .label {
+  color: #1b6b43;
+  margin: 0 0 12px;
+}
+@media (min-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+}
+
+/* ---------- Заглушки блоков (заполняются следующими задачами) ---------- */
+.section h2 {
+  margin-bottom: 20px;
+}
