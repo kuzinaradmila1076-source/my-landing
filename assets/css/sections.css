@@ -446,3 +446,71 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ---------- 03. Работы ---------- */
+.works__caption {
+  margin: 14px 0 32px;
+  max-width: 40rem;
+  color: var(--c-text-muted);
+}
+.work-list {
+  display: grid;
+  gap: 20px;
+}
+.work-card {
+  display: grid;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: rgba(234, 246, 238, 0.06);
+  border: 1px solid rgba(234, 246, 238, 0.14);
+}
+.work-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  aspect-ratio: 16 / 10;
+}
+.work-card__body {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 22px;
+}
+.work-card__body p {
+  color: var(--c-text-muted);
+}
+.work-card__body strong {
+  color: var(--c-text);
+}
+.work-card__stack {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--c-accent) !important;
+}
+.work-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin-top: 6px;
+}
+.work-card__links a:not(.btn) {
+  color: var(--c-text);
+  text-underline-offset: 3px;
+  padding: 6px 0;
+}
+.works__try {
+  margin: 48px 0 0;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+@media (min-width: 900px) {
+  .work-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .work-card[data-work='dom-kapibara'] {
+    grid-column: 1 / -1;
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}

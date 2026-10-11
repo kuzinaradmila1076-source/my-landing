@@ -47,7 +47,7 @@
           <p class="hero__sub">Для малого бизнеса в сфере услуг. Один человек отвечает за всё: от макета до запуска.</p>
           <div class="hero__actions">
             <a class="btn btn--primary" href="https://t.me/radmila_direct" data-goal="telegram">Обсудить проект</a>
-            <a class="hero__link" href="#works">Попробовать демо-бота ↓</a>
+            <a class="hero__link" href="#demo-bot">Попробовать демо-бота ↓</a>
           </div>
           <p class="hero__note">Отвечу в Telegram в течение дня</p>
           <p class="hero__proof">1 учебный сайт онлайн и 3 рабочих демо: квиз, калькулятор, бот</p>
@@ -104,12 +104,60 @@
     </section>
     <section id="works" class="section section--dark">
       <div class="container">
+        <p class="label">Работы</p>
         <h2>Работы и живые демо</h2>
+        <p class="works__caption">Учебные проекты. Здесь будут реальные кейсы, когда они появятся.</p>
+        <div class="work-list">
+          <!-- works:start -->
+<article class="work-card" data-work="dom-kapibara">
+  <img class="work-card__img" src="assets/img/kapibara.webp" width="1200" height="750" alt="Первый экран сайта «Дом Капибара»: дети гладят капибар, кнопка «Выбрать дату и время»" loading="lazy">
+  <div class="work-card__body">
+    <p class="label">Учебный проект</p>
+    <h3>Дом Капибара</h3>
+    <p><strong>Задача.</strong> Сайт-визитка экскурсии к капибарам в Сочи: рассказать об экскурсии, показать цену и помочь выбрать дату.</p>
+    <p><strong>Что сделано.</strong> Страница с описанием, ценой от 1 700 ₽, билетами, отзывами, адресом и ответами на вопросы. Удобная версия для телефона.</p>
+    <p class="work-card__stack">HTML · CSS · GitHub Pages</p>
+    <p class="work-card__links"><a class="btn btn--primary btn--small" href="https://kuzinaradmila1076-source.github.io/dom-kapibara/" target="_blank" rel="noopener" data-goal="work">Открыть сайт</a><a href="https://github.com/kuzinaradmila1076-source/dom-kapibara" target="_blank" rel="noopener">Код на GitHub</a></p>
+  </div>
+</article>
+<article class="work-card" data-work="demo-quiz">
+  <div class="work-card__body">
+    <p class="label">Демо на странице</p>
+    <h3>Квиз «Запись в салон»</h3>
+    <p><strong>Задача.</strong> Показать, как клиент записывается без звонка и переписки.</p>
+    <p><strong>Что сделано.</strong> Рабочий квиз из четырёх шагов: услуга, мастер, день, время. В конце готовое сообщение в Telegram.</p>
+    <p class="work-card__stack">JavaScript</p>
+    <p class="work-card__links"><a class="btn btn--primary btn--small" href="#demo-quiz" data-goal="work">Попробовать</a></p>
+  </div>
+</article>
+<article class="work-card" data-work="demo-calculator">
+  <div class="work-card__body">
+    <p class="label">Демо на странице</p>
+    <h3>Калькулятор стоимости</h3>
+    <p><strong>Задача.</strong> Дать клиенту примерную цену сразу, без ожидания ответа.</p>
+    <p><strong>Что сделано.</strong> Выбор услуги, несколько вопросов, диапазон цены и срока и отправка расчёта в Telegram.</p>
+    <p class="work-card__stack">JavaScript</p>
+    <p class="work-card__links"><a class="btn btn--primary btn--small" href="#calculator" data-goal="work">Попробовать</a></p>
+  </div>
+</article>
+<article class="work-card" data-work="demo-bot">
+  <div class="work-card__body">
+    <p class="label">Демо на странице</p>
+    <h3>Чат-бот для записи</h3>
+    <p><strong>Задача.</strong> Принять запись на услугу, пока мастер занят.</p>
+    <p><strong>Что сделано.</strong> Диалог по заготовленному сценарию: услуга, свободное время, подтверждение записи.</p>
+    <p class="work-card__stack">JavaScript</p>
+    <p class="work-card__links"><a class="btn btn--primary btn--small" href="#demo-bot" data-goal="work">Попробовать</a></p>
+  </div>
+</article>
+          <!-- works:end -->
+        </div>
+        <h3 class="works__try">Попробуйте прямо здесь</h3>
         <div class="demo-grid">
-          <div class="demo-card bot" data-bot="works">
+          <div class="demo-card bot" id="demo-bot" data-bot="works">
             <noscript><p>Включите JavaScript или напишите в Telegram: <a href="https://t.me/radmila_direct">@radmila_direct</a></p></noscript>
           </div>
-          <div class="demo-card quiz" data-quiz>
+          <div class="demo-card quiz" id="demo-quiz" data-quiz>
             <noscript><p>Включите JavaScript или напишите в Telegram: <a href="https://t.me/radmila_direct">@radmila_direct</a></p></noscript>
           </div>
         </div>
