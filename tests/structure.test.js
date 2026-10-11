@@ -42,3 +42,12 @@ test('stylesheets and the module entry are linked with relative paths', () => {
   has('href="assets/css/base.css"');
   has('href="assets/css/sections.css"');
 });
+
+test('calculator section has a mount point, a no-JS fallback and the module entry', () => {
+  const m = html.match(/<section id="calculator"[\s\S]*?<\/section>/);
+  assert.ok(m, 'calculator section');
+  assert.ok(m[0].includes('data-calculator'));
+  assert.ok(m[0].includes('<noscript>'));
+  assert.ok(m[0].includes('Включите JavaScript или напишите в Telegram'));
+  has('<script type="module" src="assets/js/main.js"></script>');
+});
