@@ -1,5 +1,7 @@
 import { bootModule } from './boot.js';
 
+window.__landingReady = true; // fallback.js по этому флагу понимает, что модуль стартовал
+
 const all = (selector) => [...document.querySelectorAll(selector)];
 
 // Интерактив подгружается по отдельности: сбой одного модуля не ломает остальные и оставляет заглушку.

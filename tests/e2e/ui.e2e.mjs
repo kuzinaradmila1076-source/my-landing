@@ -50,9 +50,19 @@ async function open(opts = {}) {
 
 await check('a module that fails to load leaves the stub, and the other modules still work', async () => {
   const page = await open({ block: 'bot-demo.js' });
-  const hero = await page.$eval('[data-bot="hero"]', (e) => e.textContent);
+  const hero = await page.$eval('[data-bot="hero"]', (e) => e.innerText);
   ok(hero.includes('Включите JavaScript или напишите в Telegram'), 'hero bot card should show the stub');
   ok((await page.$('.calc__picker')) !== null, 'calculator should still work');
+  await page.close();
+});
+
+await check('when main.js cannot run at all, the empty windows get the stub after a short wait', async () => {
+  const page = await open({ block: 'main.js' });
+  await new Promise((r) => setTimeout(r, 3600));
+  for (const sel of ['[data-bot="hero"]', '[data-quiz]', '[data-calculator]']) {
+    const text = await page.$eval(sel, (e) => e.innerText); // видимый текст: скрытый noscript не считается
+    ok(text.includes('Включите JavaScript или напишите в Telegram'), sel + ' is blank or has no visible stub');
+  }
   await page.close();
 });
 

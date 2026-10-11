@@ -149,3 +149,12 @@ test('the menu script file exists and main.js loads modules through the safe boo
   assert.ok(main.includes("from './boot.js'"));
   assert.ok(!/^import \{ init(Calculator|Quiz|Bot) \}/m.test(main), 'interactive modules must be loaded dynamically');
 });
+
+test('a classic fallback script is loaded and main.js reports that it started', () => {
+  has('<script src="assets/js/fallback.js" defer></script>');
+  const main = readFileSync(new URL('../assets/js/main.js', import.meta.url), 'utf8');
+  assert.ok(main.includes('window.__landingReady = true'));
+  const fb = readFileSync(new URL('../assets/js/fallback.js', import.meta.url), 'utf8');
+  assert.ok(fb.includes('__landingReady') && fb.includes('Включите JavaScript или напишите в Telegram'));
+  assert.ok(fb.includes('https://t.me/radmila_direct'));
+});
