@@ -51,3 +51,10 @@ test('calculator section has a mount point, a no-JS fallback and the module entr
   assert.ok(m[0].includes('Включите JavaScript или напишите в Telegram'));
   has('<script type="module" src="assets/js/main.js"></script>');
 });
+
+test('works section contains the demo quiz mount with a no-JS fallback', () => {
+  const m = html.match(/<section id="works"[\s\S]*?<\/section>/);
+  assert.ok(m, 'works section');
+  assert.ok(m[0].includes('data-quiz'));
+  assert.ok(m[0].includes('Включите JavaScript или напишите в Telegram'));
+});
