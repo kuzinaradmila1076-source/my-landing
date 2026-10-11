@@ -64,3 +64,68 @@ test('the demo bot is mounted twice: in the hero card and in the works section',
   const works = html.match(/<section id="works"[\s\S]*?<\/section>/)[0];
   assert.ok(works.includes('data-bot'));
 });
+
+const section = (id) => {
+  const m = html.match(new RegExp('<section id="' + id + '"[\\s\\S]*?</section>'));
+  assert.ok(m, `section #${id}`);
+  return m[0];
+};
+const text = (s) => s.replace(/<[^>]+>/g, ' ').replace(/[ \t\r\n]+/g, ' ');
+
+test('process has five steps and the second is the deep niche and competitor analysis', () => {
+  const s = section('process');
+  const steps = s.match(/data-step="\d"/g) ?? [];
+  assert.equal(steps.length, 5);
+  assert.ok(/data-step="2"[\s\S]*?Глубокий анализ ниши и конкурентов/.test(s));
+  assert.ok(/data-step="1"[\s\S]*?Бриф/.test(s));
+  assert.ok(/data-step="5"[\s\S]*?Поддержка/.test(s));
+});
+
+test('process states the agreed conditions', () => {
+  const t = text(section('process'));
+  assert.ok(t.includes('30% перед началом, 40% после согласования прототипа, 30% после сдачи'));
+  assert.ok(t.includes('2 круга правок'));
+  assert.ok(t.includes('14 дней'));
+  assert.ok(t.includes('передаются вам полностью после финальной оплаты'));
+  assert.ok(t.includes('ИП'));
+});
+
+test('about has the name, a described photo and honest learning status', () => {
+  const s = section('about');
+  assert.ok(s.includes('Радмила Кузина'));
+  assert.ok(/<img[^>]+src="assets\/img\/radmila\.webp"[^>]+alt="[^"]{5,}"/.test(s));
+  assert.ok(text(s).includes('прохожу обучение'));
+  assert.ok(s.includes('https://github.com/kuzinaradmila1076-source'));
+});
+
+test('faq has seven questions in details elements and covers the key fears', () => {
+  const s = section('faq');
+  assert.equal((s.match(/<details/g) ?? []).length, 7);
+  const t = text(s);
+  for (const q of ['Сколько это стоит', 'Сколько времени займёт', 'не понравится результат', 'Кому принадлежат сайт и код', 'после запуска', 'ИИ-агент безопасен', 'работаете одна']) {
+    assert.ok(t.includes(q), q);
+  }
+});
+
+test('the final block has the promise, three contact buttons and what happens next', () => {
+  const s = section('contact');
+  assert.ok(s.includes('Расскажите о задаче, отвечу в течение дня'));
+  assert.ok(s.includes('href="https://t.me/radmila_direct"'));
+  assert.ok(s.includes('href="tel:+79308501004"') && s.includes('Позвонить'));
+  assert.ok(s.includes('href="mailto:radmila-web@yandex.ru"') && s.includes('Написать на почту'));
+  assert.ok(text(s).includes('Что будет после заявки'));
+});
+
+test('the footer has the sole-proprietor requisites, address and the three documents', () => {
+  const f = html.match(/<footer[\s\S]*?<\/footer>/);
+  assert.ok(f, 'footer');
+  for (const s of ['ИП Кузина Радмила', '326680000013067', '681101943762', 'Транспортная 78/30', '© 2026',
+    'https://project1003106.tilda.ws/confidentiality', 'https://project1003106.tilda.ws/personal', 'https://project1003106.tilda.ws/media']) {
+    assert.ok(f[0].includes(s), s);
+  }
+});
+
+test('no invented testimonials or client logos', () => {
+  assert.ok(!html.includes('<blockquote'));
+  assert.ok(!/Отзывы клиентов|Нам доверяют|Наши клиенты/.test(html));
+});
