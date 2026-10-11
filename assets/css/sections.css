@@ -705,3 +705,20 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* ---------- Мягкие переходы между секциями (зелёная → светлая → чёрная) ---------- */
+.section {
+  position: relative;
+}
+.section + .section::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: clamp(48px, 8vw, 110px);
+  background: linear-gradient(to bottom, var(--blend-from, transparent), transparent);
+  pointer-events: none;
+}
+.section--dark + .section--light { --blend-from: var(--c-bg); }
+.section--light + .section--dark { --blend-from: var(--c-light); }
+.section--light + .section--black { --blend-from: var(--c-light); }
+.section--black + .section--dark { --blend-from: var(--c-black); }

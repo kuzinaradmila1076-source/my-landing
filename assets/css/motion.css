@@ -1,5 +1,38 @@
-/* Анимации: только transform, opacity, filter. Всё включается лишь при no-preference. */
+/*
+  Анимации: только transform, opacity, filter.
+  Базовое состояние контента всегда видимое; скрытие (opacity: 0) допустимо
+  только внутри keyframes и .js-reveal и только при prefers-reduced-motion: no-preference.
+  Список селекторов блоков совпадает с REVEAL_SELECTOR в assets/js/reveal.js.
+*/
+
 @media (prefers-reduced-motion: no-preference) {
+  /* ---- Первый экран: проявление из размытия, один раз при загрузке ---- */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+  .hero__grid > div:first-child > * {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero__grid > div:first-child > :nth-child(1) { animation-delay: 0.05s; }
+  .hero__grid > div:first-child > :nth-child(2) { animation-delay: 0.15s; }
+  .hero__grid > div:first-child > :nth-child(3) { animation-delay: 0.35s; }
+  .hero__grid > div:first-child > :nth-child(4) { animation-delay: 0.45s; }
+  .hero__grid > div:first-child > :nth-child(5) { animation-delay: 0.55s; }
+  .hero__grid > div:first-child > :nth-child(6) { animation-delay: 0.65s; }
+  .hero__grid > .demo-card {
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both;
+  }
+
+  /* ---- Сообщения демо-бота ---- */
   @keyframes msg-in {
     from {
       opacity: 0;
@@ -12,5 +45,71 @@
   }
   .bot__msg {
     animation: msg-in 0.35s ease both;
+  }
+
+  /* ---- Микроанимации карточек ---- */
+  .service-card,
+  .work-card,
+  .step {
+    transition: transform 0.25s ease;
+  }
+  .service-card:hover,
+  .work-card:hover,
+  .step:hover {
+    transform: translateY(-4px);
+  }
+
+  /* ---- Запасное появление блоков (Firefox): класс ставит reveal.js ---- */
+  .js-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .js-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Появление блоков по прокрутке на чистом CSS ---- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes reveal-in {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+        filter: blur(0);
+      }
+    }
+    .service-card,
+    .work-card,
+    .step,
+    .terms,
+    .demo-grid .demo-card,
+    .about__photo,
+    .about__text,
+    .faq__item,
+    .contact__buttons,
+    .contact__next {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+/* ---- Без анимаций: всё видимо и неподвижно ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
