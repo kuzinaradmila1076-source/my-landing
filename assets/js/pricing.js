@@ -211,6 +211,10 @@ export function calculate(serviceId, answers = {}) {
 
 const number = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
+export function formatPrice(n) {
+  return `от ${number(n)} ₽`;
+}
+
 export function formatRange({ min, max }) {
   return `${number(min)}–${number(max)} ₽`;
 }

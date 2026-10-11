@@ -172,3 +172,77 @@
 .section h2 {
   margin-bottom: 20px;
 }
+
+/* ---------- 02. Что я делаю ---------- */
+.label--dark {
+  color: #1b6b43;
+  margin-bottom: 14px;
+}
+.service-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 36px;
+}
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid #dcefe3;
+}
+.service-card h3 {
+  font-size: 1.3rem;
+}
+.service-card__pitch {
+  font-weight: 600;
+}
+.service-card__get {
+  color: var(--c-ink-muted);
+  font-size: 0.95rem;
+}
+.service-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #e3f1e9;
+}
+.service-card__price {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.service-card__term {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--c-ink-muted);
+}
+.service-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 0.9rem;
+}
+.service-card__links a {
+  color: #14633c;
+  text-underline-offset: 3px;
+  padding: 4px 0;
+}
+.price-note {
+  margin-top: 24px;
+  color: var(--c-ink-muted);
+}
+@media (min-width: 700px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1000px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
