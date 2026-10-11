@@ -58,3 +58,9 @@ test('works section contains the demo quiz mount with a no-JS fallback', () => {
   assert.ok(m[0].includes('data-quiz'));
   assert.ok(m[0].includes('Включите JavaScript или напишите в Telegram'));
 });
+
+test('the demo bot is mounted twice: in the hero card and in the works section', () => {
+  assert.ok((html.match(/data-bot=/g) ?? []).length >= 2);
+  const works = html.match(/<section id="works"[\s\S]*?<\/section>/)[0];
+  assert.ok(works.includes('data-bot'));
+});
